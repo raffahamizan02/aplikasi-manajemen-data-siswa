@@ -1,4 +1,4 @@
 # Aplikasi Manejemen Data Siswa PHP & MySQL
 Nama Siswa :
-- Muhammad Abhiraffa Hamizan
-- Zidaen Zein
+- Muhammad Abhiraffa Hamizan / 17
+- Zidaen Ahmad Zein / 17
