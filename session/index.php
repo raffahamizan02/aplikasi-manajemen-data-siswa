@@ -17,14 +17,10 @@ $_SESSION['login'] = false;
         <hr>
         <form action="cek_login.php"method="POST">
             <div class="form-control">
-               
-                    <input type="text" name="user" placeholder="Masukan username">
-                
+                <input type="text" name="user" placeholder="Masukan username">
             </div>
             <div class="form-control">
-                
                 <input type="password" name="pass" placeholder="Masukan password">
-                
             </div>
             <div class="form-control">
                 <button type="submit">LOGIN</button>

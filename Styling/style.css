@@ -81,12 +81,12 @@ display: block;
     font-size: 30px;
 }
 .container {
-    width: 766px;
-margin: 40px auto;
-background-color: white;
-border: 1px solid #ccc;
-padding: 40px;
-box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    width: 700px;
+    margin: 40px auto;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 40px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 .container h2 {
@@ -136,6 +136,11 @@ table{
 }
 
 th{
-    background-color: 10px;
+    background-color: #1F4E79;
+    color: white;
+}
+
+th, td {
+    padding: 10px;
     border-bottom: 1px solid #ddd;
 }
