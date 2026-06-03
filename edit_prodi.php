@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "../Koneksi/Koneksi.php";
+include "koneksi.php";
 $id_prodi = $_GET['id_prodi'];
 $query = mysqli_query($koneksi, "SELECT * FROM prodi WHERE id_prodi='$id_prodi'");
 $data = mysqli_fetch_assoc($query);

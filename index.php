@@ -8,14 +8,14 @@ $_SESSION['login'] = false;
 
 <head>
     <title>Login Sistem Manajemen Data Siswa</title>
-    <link rel="stylesheet" href="../Styling/style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <div class="container">
         <h2>PANEL LOGIN</h2>
         <hr>
-        <form action="cek_login.php"method="POST">
+        <form action="cek_login.php" method="POST">
             <div class="form-control">
                 <input type="text" name="user" placeholder="Masukan username">
             </div>

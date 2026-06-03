@@ -2,7 +2,7 @@
 session_start();
 
 // panggil koneksi
-include '../Koneksi/Koneksi.php';
+include 'koneksi.php';
 
 // ambil data dari form
 $username = $_POST['user'];
@@ -18,7 +18,7 @@ $cek = mysqli_num_rows($query);
 if ($cek > 0) {
     $_SESSION['login'] = true;
     $_SESSION['user'] = $username;
-    header("location: ../Navigasi/home.php");
+    header("location: home.php");
 } else {
     header("location: index.php?p=Username atau Password salah!");
 }

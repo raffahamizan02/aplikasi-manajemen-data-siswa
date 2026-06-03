@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "../Koneksi/Koneksi.php";
+include "koneksi.php";
 $id_prodi = $_GET['id_prodi'];
 
 // cek apakah prodi dipakai di table siswa

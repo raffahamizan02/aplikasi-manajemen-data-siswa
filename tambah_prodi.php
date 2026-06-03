@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "../Koneksi/Koneksi.php";
+include "koneksi.php";
 $error = "";
 
 // proses simpan

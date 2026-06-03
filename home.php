@@ -2,7 +2,7 @@
 session_start();
 header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 if (!isset($_SESSION['login']) || $_SESSION['login'] != true) {
-    header("Location : ../session/index.php?p=Silahkan login terlebih dahulu!");
+    header("Location : index.php?p=Silahkan login terlebih dahulu!");
     exit();
 }
 ?>
@@ -11,7 +11,7 @@ if (!isset($_SESSION['login']) || $_SESSION['login'] != true) {
 <html>
  <head>
     <title>Halaman Home</title>
-    <link rel="stylesheet" href="../Styling/style.css">
+    <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
 </head>
 <body>

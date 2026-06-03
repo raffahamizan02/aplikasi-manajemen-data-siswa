@@ -2,10 +2,10 @@
 session_start();
 header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 if (!isset($_SESSION['login']) || $_SESSION['login'] != true) {
-    header("Location: ../session/index.php?p=Silahkan login terlebih dahulu!");
+    header("Location: index.php?p=Silahkan login terlebih dahulu!");
     exit();
 }
-include "../Koneksi/Koneksi.php";
+include "koneksi.php";
 $data = mysqli_query($koneksi, "SELECT * FROM prodi");
 ?>
 
@@ -13,12 +13,12 @@ $data = mysqli_query($koneksi, "SELECT * FROM prodi");
 <html>
 <head>
     <title>Data Prodi</title>
-    <link rel="stylesheet" href="../Styling/style.css">
-    <script src="../Navigasi/script.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
 </head>
 
 <body>
-    <?php include "../Navigasi/navigasi.php"; ?>
+    <?php include "navigasi.php"; ?>
     <div id="main">
         <div class="container">
             <h2>Data Prodi</h2>
