@@ -11,10 +11,10 @@ if($koneksi) {
     //memilih database
     $pilih_db = mysqli_select_db($koneksi, $database);
     if ($pilih_db) {
-        echo "Database terpilih";
+        // echo "Database terpilih";
     }
 } else {
-    echo "Koneksi Gagal, di periksa lagi";
+    // echo "Koneksi Gagal, di periksa lagi";
 
 }
 ?>

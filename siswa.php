@@ -26,11 +26,14 @@ $data = mysqli_query($koneksi, "SELECT s.*, p.nama_prodi FROM siswa s JOIN prodi
             <h2>Data Siswa</h2>
             <hr>
             <a href="tambah_siswa.php" class="tambah">TAMBAH DATA SISWA</a>
+            <br><br>
             <table>
                 <tr>
                     <th>NIS</th>
                     <th>Nama</th>
                     <th>Prodi</th>
+                    <th>Tahun Ajaran</th>
+                    <th>Kelas</th>
                     <th>ACTION</th>
                 </tr>
                 <?php while ($row = mysqli_fetch_assoc($data)) { ?>
