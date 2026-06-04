@@ -86,7 +86,7 @@ if (isset($_POST['update'])) {
                         </td>
                     </tr>
                     <tr>
-                        <td>Foto (Biarkan kosong jika tidak diubah)</td>
+                        <td>Foto</td>
                         <td>
                             <img src="uploads/<?php echo $data['foto']; ?>" width="50"><br>
                             <input type="file" name="foto">
