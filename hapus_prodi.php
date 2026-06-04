@@ -12,7 +12,8 @@ if (mysqli_num_rows($cek) > 0) {
     echo "<a href='prodi.php' class='batal'>Kembali</a>";
 } else {
     mysqli_query($koneksi, "DELETE FROM prodi WHERE id_prodi='$id_prodi'");
-    header("Location: prodi.php");
+    echo "<h1>Data berhasil dihapus!</h1>";
+    echo "<a href='prodi.php' class='batal'>Kembali</a>";
 }
 exit();
 ?>

@@ -11,24 +11,34 @@ if (isset($_POST['simpan'])) {
     $tahun_ajaran = $_POST['tahun_ajaran'];
     $kd_prodi = $_POST['kd_prodi'];
     $jk = $_POST['jenis_kelamin'];
-    
-    $foto = $_FILES['foto']['name'];
-    $tmp = $_FILES['foto']['tmp_name'];
-    $nama_foto = time() . '_' . $foto;
-    $path = "uploads/" . $nama_foto;
+    $nama_foto = NULL;
 
-    if (empty($nis) || empty($nama) || empty($kelas) || empty($tahun_ajaran) || empty($kd_prodi) 
-        || empty($jk) || empty($foto)) {
-        $error = "Data wajib diisi!";
-    } else {
-        if(move_uploaded_file($tmp, $path)){
-            mysqli_query($koneksi, "INSERT INTO siswa (nis, nama, kelas, tahun_ajaran, kd_prodi, jenis_kelamin, foto) 
-            VALUES ('$nis', '$nama', '$kelas', '$tahun_ajaran', '$kd_prodi', '$jk', '$nama_foto')");
-            echo "<h1>Data berhasil disimpan!</h1>";
-            echo "<a href='siswa.php' class='batal'>Kembali</a>";
-            exit();
+if (empty($nis) || empty($nama) || empty($kelas) || empty($tahun_ajaran) || empty($kd_prodi) 
+    || empty($jk)) {
+    $error = "Data wajib diisi!";
+} else {
+    if (!empty($_FILES['foto']['name'])) {
+
+        $foto = $_FILES['foto']['name'];
+        $tmp = $_FILES['foto']['tmp_name'];
+        $nama_foto = time() . '_' . $foto;
+        $path = "uploads/" . $nama_foto;
+
+        if (!move_uploaded_file($tmp, $path)) {
+            $error = "Gagal mengupload foto!";
         }
     }
+    if ($error == "") {
+
+        mysqli_query($koneksi, "INSERT INTO siswa (nis, nama, kelas, tahun_ajaran, kd_prodi, jenis_kelamin, foto) 
+        VALUES ('$nis', '$nama', '$kelas', '$tahun_ajaran', '$kd_prodi', '$jk', " . 
+        ($nama_foto ? "'$nama_foto'" : "NULL") . ")");
+
+        echo "<h1>Data berhasil disimpan!</h1>";
+        echo "<a href='siswa.php' class='batal'>Kembali</a>";
+        exit();
+    }
+}
 }
 ?>
 <html>
@@ -79,8 +89,8 @@ if (isset($_POST['simpan'])) {
                     </td>
                 </tr>
                 <tr>
-                    <td>Foto</td>
-                    <td><input type="file" name="foto" required></td>
+                    <td>Foto (Opsional)</td>
+                    <td><input type="file" name="foto"></td>
                 </tr>
                 <tr>
                     <td></td>

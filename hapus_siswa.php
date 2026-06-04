@@ -17,7 +17,8 @@ if(file_exists("uploads/" . $data['foto']) && $data['foto'] != "") {
 
 $hapus = mysqli_query($koneksi, "DELETE FROM siswa WHERE id='$id'");
 if ($hapus) {
-    header("Location: siswa.php?p=Data berhasil dihapus!");
+    echo "<h1>Data berhasil dihapus!</h1>";
+    echo "<a href='siswa.php' class='batal'>Kembali</a>";
 } else {
     header("Location: siswa.php?p=Gagal menghapus data!");
     exit();

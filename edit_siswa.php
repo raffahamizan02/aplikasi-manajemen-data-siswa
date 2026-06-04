@@ -92,7 +92,7 @@ if (isset($_POST['update'])) {
                         </td>
                     </tr>
                     <tr>
-                        <td>Foto</td>
+                        <td>Foto (Opsional)</td>
                         <td>
                             <img src="uploads/<?php echo $data['foto']; ?>" width="50"><br>
                             <input type="file" name="foto">
