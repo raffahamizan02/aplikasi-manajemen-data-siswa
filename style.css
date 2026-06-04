@@ -144,3 +144,34 @@ th, td {
     padding: 10px;
     border-bottom: 1px solid #ddd;
 }
+
+input[type=text]{
+    padding:8px;
+    width:250px;
+    align-items: center;
+}
+
+input[type=password]{
+    padding:8px;
+    width:250px;
+    align-items: center;
+}
+
+.search-button{
+    padding:8px 15px;
+    cursor:pointer;
+}
+
+img{
+    border-radius:8px;
+}
+
+.form-control{
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.reset-button{
+    padding: 8px 15px;
+    cursor: pointer;
+}
