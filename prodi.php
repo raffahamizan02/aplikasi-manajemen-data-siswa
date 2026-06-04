@@ -6,9 +6,14 @@ if (!isset($_SESSION['login']) || $_SESSION['login'] != true) {
     exit();
 }
 include "koneksi.php";
-$data = mysqli_query($koneksi, "SELECT * FROM prodi");
-?>
 
+$cari = isset($_GET['cari']) ? $_GET['cari'] : '';
+if($cari != '') {
+    $data = mysqli_query($koneksi, "SELECT * FROM prodi WHERE nama_prodi LIKE '%$cari%' OR kd_prodi LIKE '%$cari%'");
+} else {
+    $data = mysqli_query($koneksi, "SELECT * FROM prodi");
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,15 +21,20 @@ $data = mysqli_query($koneksi, "SELECT * FROM prodi");
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
 </head>
-
 <body>
     <?php include "navigasi.php"; ?>
     <div id="main">
         <div class="container">
             <h2>Data Prodi</h2>
             <hr>
-            <a href="tambah_prodi.php" class="tambah">TAMBAH DATA PRODI</a>
-            <br><br>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                <a href="tambah_prodi.php" class="tambah">TAMBAH DATA PRODI</a>
+                <form method="GET" action="prodi.php">
+                    <input type="text" name="cari" placeholder="Cari Kode atau Nama Prodi..." value="<?php echo $cari; ?>" style="padding: 5px;">
+                    <button type="submit" style="padding: 5px;">Cari</button>
+                    <?php if($cari != '') echo '<a href="prodi.php" style="padding: 5px; background: #ccc; text-decoration: none; color: black; border: 1px solid #999;">Reset</a>'; ?>
+                </form>
+            </div>
             <table>
                 <tr>
                     <th>Kode Prodi</th>
@@ -45,5 +55,4 @@ $data = mysqli_query($koneksi, "SELECT * FROM prodi");
         </div>
     </div>
 </body>
-
 </html>

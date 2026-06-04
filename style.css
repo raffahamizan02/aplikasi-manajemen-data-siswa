@@ -144,18 +144,3 @@ th, td {
     padding: 10px;
     border-bottom: 1px solid #ddd;
 }
-
-input[type=text]{
-    padding:8px;
-    width:250px;
-    align-items: center;
-}
-
-button{
-    padding:8px 15px;
-    cursor:pointer;
-}
-
-img{
-    border-radius:8px;
-}

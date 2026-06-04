@@ -14,14 +14,25 @@ if (isset($_POST['update'])) {
     $tahun_ajaran = $_POST['tahun_ajaran'];
     $kd_prodi = $_POST['kd_prodi'];
     $jk = $_POST['jenis_kelamin'];
-    mysqli_query($koneksi, "UPDATE siswa SET nis='$nis', nama='$nama', kelas='$kelas', tahun_ajaran='$tahun_ajaran', kd_prodi='$kd_prodi', jenis_kelamin='$jk' WHERE id='$id'");
+    
+    $foto = $_FILES['foto']['name'];
+    $tmp = $_FILES['foto']['tmp_name'];
+
+    if($foto != "") {
+        $nama_foto = time() . '_' . $foto;
+        $path = "uploads/" . $nama_foto;
+        if(file_exists("uploads/" . $data['foto']) && $data['foto'] != "") {
+            unlink("uploads/" . $data['foto']);
+        }
+        move_uploaded_file($tmp, $path);
+        mysqli_query($koneksi, "UPDATE siswa SET nis='$nis', nama='$nama', kelas='$kelas', tahun_ajaran='$tahun_ajaran', kd_prodi='$kd_prodi', jenis_kelamin='$jk', foto='$nama_foto' WHERE id='$id'");
+    } else {
+        mysqli_query($koneksi, "UPDATE siswa SET nis='$nis', nama='$nama', kelas='$kelas', tahun_ajaran='$tahun_ajaran', kd_prodi='$kd_prodi', jenis_kelamin='$jk' WHERE id='$id'");
+    }
+
     echo "<h1>Data berhasil diupdate!</h1>";
     echo "<a href='siswa.php' class='batal'>Kembali</a>";
     exit();
-}
-
-if (empty($_POST['nis']) || empty($_POST['nama']) || empty($_POST['kelas']) || empty($_POST['tahun_ajaran']) || empty($_POST['kd_prodi']) || empty($_POST['jenis_kelamin'])) {
-    $error = "Data harus dirubah!";
 }
 ?>
 <!DOCTYPE html>
@@ -36,7 +47,7 @@ if (empty($_POST['nis']) || empty($_POST['nama']) || empty($_POST['kelas']) || e
         <div class="container">
             <h2>EDIT DATA SISWA</h2>
             <hr>
-            <form method="POST">
+            <form method="POST" enctype="multipart/form-data">
                 <table>
                     <tr>
                         <td>NIS</td>
@@ -48,11 +59,11 @@ if (empty($_POST['nis']) || empty($_POST['nama']) || empty($_POST['kelas']) || e
                     </tr>
                     <tr>
                         <td>Kelas</td>
-                        <td><input type="text" name="kelas" value="<?php echo $data['kelas']; ?>"></td>
+                        <td><input type="text" name="kelas" value="<?php echo $data['kelas']; ?>" required></td>
                     </tr>
                     <tr>
                         <td>Tahun Ajaran</td>
-                        <td><input type="text" name="tahun_ajaran" value="<?php echo $data['tahun_ajaran']; ?>"></td>
+                        <td><input type="text" name="tahun_ajaran" value="<?php echo $data['tahun_ajaran']; ?>" required></td>
                     </tr>
                     <tr>
                         <td>Jenis Kelamin</td>
@@ -75,14 +86,22 @@ if (empty($_POST['nis']) || empty($_POST['nama']) || empty($_POST['kelas']) || e
                         </td>
                     </tr>
                     <tr>
+                        <td>Foto (Biarkan kosong jika tidak diubah)</td>
+                        <td>
+                            <img src="uploads/<?php echo $data['foto']; ?>" width="50"><br>
+                            <input type="file" name="foto">
+                        </td>
+                    </tr>
+                    <tr>
                         <td></td>
                         <td>
                             <button type="submit" name="update" class="submit">UPDATE</button>
-                            <button type="submit" name="batal" class="cancel"><a href="siswa.php">BATAL</a></button>
+                            <button type="button" class="cancel"><a href="siswa.php" style="color:white; text-decoration:none;">BATAL</a></button>
                         </td>
                     </tr>
                 </table>
             </form>
         </div>
     </div>
+</body>
 </html>

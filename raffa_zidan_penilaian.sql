@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 29, 2026 at 09:24 AM
+-- Generation Time: Jun 04, 2026 at 04:16 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -57,7 +57,10 @@ CREATE TABLE `prodi` (
 --
 
 INSERT INTO `prodi` (`id_prodi`, `kd_prodi`, `nama_prodi`) VALUES
-(1, 'RPL', 'RPLA');
+(8, 'RPL', 'RPLA'),
+(10, 'DKV', 'DKVA'),
+(11, 'TKR', 'TKRA'),
+(12, 'BP', 'BPA');
 
 -- --------------------------------------------------------
 
@@ -72,17 +75,16 @@ CREATE TABLE `siswa` (
   `kelas` varchar(10) NOT NULL,
   `tahun_ajaran` varchar(10) NOT NULL,
   `kd_prodi` varchar(10) NOT NULL,
-  `jenis_kelamin` varchar(2) NOT NULL
+  `jenis_kelamin` varchar(2) NOT NULL,
+  `foto` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `siswa`
 --
 
-INSERT INTO `siswa` (`id`, `nis`, `nama`, `kelas`, `tahun_ajaran`, `kd_prodi`, `jenis_kelamin`) VALUES
-(1, '2024001', 'Ahmad Fauzi Pratama', 'XI RPL 1', '2024/2025', 'RPL', 'LK'),
-(2, '25999', 'Muhammad Abhiraffa Hamizan', 'X RPL A', '2025/2026', 'RPL', 'LK'),
-(3, '26030', 'Zidaen Ahmad Zein', 'X RPL A', '2025/2026', 'RPL', 'LK');
+INSERT INTO `siswa` (`id`, `nis`, `nama`, `kelas`, `tahun_ajaran`, `kd_prodi`, `jenis_kelamin`, `foto`) VALUES
+(14, '25999', 'raffa hamizan', '10', '2025/2026', 'RPL', 'L', NULL);
 
 --
 -- Indexes for dumped tables
@@ -120,13 +122,13 @@ ALTER TABLE `pengguna`
 -- AUTO_INCREMENT for table `prodi`
 --
 ALTER TABLE `prodi`
-  MODIFY `id_prodi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_prodi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `siswa`
 --
 ALTER TABLE `siswa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -11,6 +11,10 @@ if (!$data) {
     exit();
 }
 
+if(file_exists("uploads/" . $data['foto']) && $data['foto'] != "") {
+    unlink("uploads/" . $data['foto']);
+}
+
 $hapus = mysqli_query($koneksi, "DELETE FROM siswa WHERE id='$id'");
 if ($hapus) {
     header("Location: siswa.php?p=Data berhasil dihapus!");

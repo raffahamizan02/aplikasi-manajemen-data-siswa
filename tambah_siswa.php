@@ -11,20 +11,22 @@ if (isset($_POST['simpan'])) {
     $tahun_ajaran = $_POST['tahun_ajaran'];
     $kd_prodi = $_POST['kd_prodi'];
     $jk = $_POST['jenis_kelamin'];
+    
+    $foto = $_FILES['foto']['name'];
+    $tmp = $_FILES['foto']['tmp_name'];
+    $nama_foto = time() . '_' . $foto;
+    $path = "uploads/" . $nama_foto;
 
-    // Validasi input
-    if (empty($nis) || empty($nama) || empty($kelas) || empty($tahun_ajaran) || empty($kd_prodi) || empty($jk)) {
+    if (empty($nis) || empty($nama) || empty($kelas) || empty($tahun_ajaran) || empty($kd_prodi) || empty($jk) || empty($foto)) {
         $error = "Data wajib diisi!";
     } else {
-        mysqli_query($koneksi, "INSERT INTO siswa (nis, nama, kelas, tahun_ajaran, kd_prodi, jenis_kelamin) VALUES ('$nis', '$nama', '$kelas', '$tahun_ajaran', '$kd_prodi', '$jk')");
-        echo "<h1>Data berhasil disimpan!</h1>";
-        echo "<a href='siswa.php' class='batal'>Kembali</a>";
-        exit();
+        if(move_uploaded_file($tmp, $path)){
+            mysqli_query($koneksi, "INSERT INTO siswa (nis, nama, kelas, tahun_ajaran, kd_prodi, jenis_kelamin, foto) VALUES ('$nis', '$nama', '$kelas', '$tahun_ajaran', '$kd_prodi', '$jk', '$nama_foto')");
+            echo "<h1>Data berhasil disimpan!</h1>";
+            echo "<a href='siswa.php' class='batal'>Kembali</a>";
+            exit();
+        }
     }
-}
-
-if (empty($_POST['nis']) || empty($_POST['nama']) || empty($_POST['kelas']) || empty($_POST['tahun_ajaran']) || empty($_POST['kd_prodi']) || empty($_POST['jenis_kelamin'])) {
-    $error = "Data harus diisi!";
 }
 ?>
 <html>
@@ -36,7 +38,8 @@ if (empty($_POST['nis']) || empty($_POST['nama']) || empty($_POST['kelas']) || e
     <div class="container">
         <h2>TAMBAH DATA SISWA</h2>
         <hr>
-        <form method="POST">
+        <?php if($error != "") echo "<p style='color:red;'>$error</p>"; ?>
+        <form method="POST" enctype="multipart/form-data">
             <table>
                 <tr>
                     <td>NIS</td>
@@ -74,11 +77,16 @@ if (empty($_POST['nis']) || empty($_POST['nama']) || empty($_POST['kelas']) || e
                     </td>
                 </tr>
                 <tr>
+                    <td>Foto</td>
+                    <td><input type="file" name="foto" required></td>
+                </tr>
+                <tr>
                     <td></td>
                     <td>
                         <button type="submit" name="simpan" class="submit">SIMPAN</button>
-                        <button type="submit" name="batal" class="cancel"><a href="siswa.php">BATAL</a></button>
+                        <button type="button" class="cancel"><a href="siswa.php" style="color:white; text-decoration:none;">BATAL</a></button>
                     </td>
+                </tr>
             </table>
         </form>
     </div>
