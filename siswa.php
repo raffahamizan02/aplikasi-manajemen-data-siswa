@@ -31,9 +31,10 @@ $data = mysqli_query($koneksi, "SELECT s.*, p.nama_prodi FROM siswa s JOIN prodi
                 <tr>
                     <th>NIS</th>
                     <th>Nama</th>
-                    <th>Prodi</th>
-                    <th>Tahun Ajaran</th>
                     <th>Kelas</th>
+                    <th>Tahun Ajaran</th>
+                    <th>Prodi</th>
+                    <th>Jenis Kelamin</th>
                     <th>ACTION</th>
                 </tr>
                 <?php while ($row = mysqli_fetch_assoc($data)) { ?>
@@ -43,6 +44,7 @@ $data = mysqli_query($koneksi, "SELECT s.*, p.nama_prodi FROM siswa s JOIN prodi
                         <td><?php echo $row['kelas']; ?></td>
                         <td><?php echo $row['tahun_ajaran']; ?></td>
                         <td><?php echo $row['nama_prodi']; ?></td>
+                        <td><?php echo ($row['jenis_kelamin'] == 'L') ? 'Laki-laki' : 'Perempuan'; ?></td>
                         <td>
                             <a href="edit_siswa.php?id=<?php echo $row['id']; ?>">EDIT</a>
                             <a href="hapus_siswa.php?id=<?php echo $row['id']; ?>" onclick="return confirm('Yakin ingin hapus?')">DELETE</a>

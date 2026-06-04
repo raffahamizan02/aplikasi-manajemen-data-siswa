@@ -2,11 +2,6 @@
 session_start();
 include "koneksi.php";
 
-// CEK LOGIN
-if (!isset($_SESSION['username'])) {
-    header("Location: index.php");
-    exit();
-}
 $id = $_GET['id'];
 $query = mysqli_query($koneksi, "SELECT * FROM siswa WHERE id='$id'");
 $data = mysqli_fetch_assoc($query);
@@ -20,8 +15,13 @@ if (isset($_POST['update'])) {
     $kd_prodi = $_POST['kd_prodi'];
     $jk = $_POST['jenis_kelamin'];
     mysqli_query($koneksi, "UPDATE siswa SET nis='$nis', nama='$nama', kelas='$kelas', tahun_ajaran='$tahun_ajaran', kd_prodi='$kd_prodi', jenis_kelamin='$jk' WHERE id='$id'");
-    header("Location: siswa.php");
+    echo "<h1>Data berhasil diupdate!</h1>";
+    echo "<a href='siswa.php' class='batal'>Kembali</a>";
     exit();
+}
+
+if (empty($_POST['nis']) || empty($_POST['nama']) || empty($_POST['kelas']) || empty($_POST['tahun_ajaran']) || empty($_POST['kd_prodi']) || empty($_POST['jenis_kelamin'])) {
+    $error = "Data harus dirubah!";
 }
 ?>
 <!DOCTYPE html>
@@ -62,7 +62,7 @@ if (isset($_POST['update'])) {
                         </td>
                     </tr>
                     <tr>
-                        <td>ProGRAM Studi</td>
+                        <td>Program Studi</td>
                         <td>
                             <select name="kd_prodi" required>
                                 <option value="">--Pilih Prodi--</option>
@@ -78,6 +78,7 @@ if (isset($_POST['update'])) {
                         <td></td>
                         <td>
                             <button type="submit" name="update" class="submit">UPDATE</button>
+                            <button type="submit" name="batal" class="cancel"><a href="siswa.php">BATAL</a></button>
                         </td>
                     </tr>
                 </table>

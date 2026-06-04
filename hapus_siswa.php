@@ -3,16 +3,14 @@ session_start();
 include "koneksi.php";
 $id = $_GET['id'];
 
-// cek apakah data ada
 $cek = mysqli_query($koneksi, "SELECT * FROM siswa WHERE id='$id'");
 $data = mysqli_fetch_assoc($cek);
 
-if ($data) {
+if (!$data) {
     header("Location: siswa.php?p=Data tidak ditemukan!");
     exit();
 }
 
-// proses hapus
 $hapus = mysqli_query($koneksi, "DELETE FROM siswa WHERE id='$id'");
 if ($hapus) {
     header("Location: siswa.php?p=Data berhasil dihapus!");
