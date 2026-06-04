@@ -25,9 +25,11 @@ if (isset($_POST['update'])) {
             unlink("uploads/" . $data['foto']);
         }
         move_uploaded_file($tmp, $path);
-        mysqli_query($koneksi, "UPDATE siswa SET nis='$nis', nama='$nama', kelas='$kelas', tahun_ajaran='$tahun_ajaran', kd_prodi='$kd_prodi', jenis_kelamin='$jk', foto='$nama_foto' WHERE id='$id'");
+        mysqli_query($koneksi, "UPDATE siswa SET nis='$nis', nama='$nama', kelas='$kelas', 
+        tahun_ajaran='$tahun_ajaran', kd_prodi='$kd_prodi', jenis_kelamin='$jk', foto='$nama_foto' WHERE id='$id'");
     } else {
-        mysqli_query($koneksi, "UPDATE siswa SET nis='$nis', nama='$nama', kelas='$kelas', tahun_ajaran='$tahun_ajaran', kd_prodi='$kd_prodi', jenis_kelamin='$jk' WHERE id='$id'");
+        mysqli_query($koneksi, "UPDATE siswa SET nis='$nis', nama='$nama', kelas='$kelas', 
+        tahun_ajaran='$tahun_ajaran', kd_prodi='$kd_prodi', jenis_kelamin='$jk' WHERE id='$id'");
     }
 
     echo "<h1>Data berhasil diupdate!</h1>";
@@ -63,13 +65,16 @@ if (isset($_POST['update'])) {
                     </tr>
                     <tr>
                         <td>Tahun Ajaran</td>
-                        <td><input type="text" name="tahun_ajaran" value="<?php echo $data['tahun_ajaran']; ?>" required></td>
+                        <td><input type="text" name="tahun_ajaran" value="<?php echo $data['tahun_ajaran']; ?>" 
+                        required></td>
                     </tr>
                     <tr>
                         <td>Jenis Kelamin</td>
                         <td>
-                            <input type="radio" name="jenis_kelamin" value="L" <?php if ($data['jenis_kelamin'] == 'L') echo 'checked'; ?>> Laki-laki
-                            <input type="radio" name="jenis_kelamin" value="P" <?php if ($data['jenis_kelamin'] == 'P') echo 'checked'; ?>> Perempuan
+                            <input type="radio" name="jenis_kelamin" value="L" 
+                            <?php if ($data['jenis_kelamin'] == 'L') echo 'checked'; ?>> Laki-laki
+                            <input type="radio" name="jenis_kelamin" value="P" 
+                            <?php if ($data['jenis_kelamin'] == 'P') echo 'checked'; ?>> Perempuan
                         </td>
                     </tr>
                     <tr>
@@ -78,7 +83,8 @@ if (isset($_POST['update'])) {
                             <select name="kd_prodi" required>
                                 <option value="">--Pilih Prodi--</option>
                                 <?php while ($p = mysqli_fetch_assoc($prodi)) { ?>
-                                    <option value="<?php echo $p['kd_prodi']; ?>" <?php if ($p['kd_prodi'] == $data['kd_prodi']) echo 'selected'; ?>>
+                                    <option value="<?php echo $p['kd_prodi']; ?>" 
+                                    <?php if ($p['kd_prodi'] == $data['kd_prodi']) echo 'selected'; ?>>
                                         <?php echo $p['nama_prodi']; ?>
                                     </option>
                                 <?php } ?>
@@ -96,7 +102,8 @@ if (isset($_POST['update'])) {
                         <td></td>
                         <td>
                             <button type="submit" name="update" class="submit">UPDATE</button>
-                            <button type="button" class="cancel"><a href="siswa.php" style="color:white; text-decoration:none;">BATAL</a></button>
+                            <button type="button" class="cancel"><a href="siswa.php" style="color:white; 
+                            text-decoration:none;">BATAL</a></button>
                         </td>
                     </tr>
                 </table>

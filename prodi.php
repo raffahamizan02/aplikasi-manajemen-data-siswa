@@ -30,9 +30,13 @@ if($cari != '') {
             <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
                 <a href="tambah_prodi.php" class="tambah">TAMBAH DATA PRODI</a>
                 <form method="GET" action="prodi.php">
-                    <input type="text" name="cari" placeholder="Cari Kode atau Nama Prodi..." value="<?php echo $cari; ?>" style="padding: 5px;">
+                    <input type="text" name="cari" placeholder="Cari Kode atau Nama Prodi..." value="
+                    <?php echo $cari; ?>" 
+                    style="padding: 5px;">
                     <button type="submit" style="padding: 5px;">Cari</button>
-                    <?php if($cari != '') echo '<a href="prodi.php" style="padding: 5px; background: #ccc; text-decoration: none; color: black; border: 1px solid #999;">Reset</a>'; ?>
+                    <?php if($cari != '') echo '<a href="prodi.php" style="padding: 5px; 
+                    background: #ccc; text-decoration: none; 
+                    color: black; border: 1px solid #999;">Reset</a>'; ?>
                 </form>
             </div>
             <table>
@@ -47,7 +51,8 @@ if($cari != '') {
                         <td><?php echo $row['nama_prodi']; ?></td>
                         <td>
                             <a href="edit_prodi.php?id_prodi=<?php echo $row['id_prodi']; ?>">EDIT</a>
-                            <a href="hapus_prodi.php?id_prodi=<?php echo $row['id_prodi']; ?>" onclick="return confirm('Yakin ingin hapus?')">DELETE</a>
+                            <a href="hapus_prodi.php?id_prodi=<?php echo $row['id_prodi']; ?>" 
+                            onclick="return confirm('Yakin ingin hapus?')">DELETE</a>
                         </td>
                     </tr>
                 <?php } ?>

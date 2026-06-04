@@ -9,9 +9,12 @@ include "koneksi.php";
 
 $cari = isset($_GET['cari']) ? $_GET['cari'] : '';
 if($cari != '') {
-    $data = mysqli_query($koneksi, "SELECT s.*, p.nama_prodi FROM siswa s JOIN prodi p ON s.kd_prodi = p.kd_prodi WHERE s.nama LIKE '%$cari%' OR s.nis LIKE '%$cari%'");
+    $data = mysqli_query($koneksi, "SELECT s.*, p.nama_prodi FROM siswa s JOIN prodi p 
+    ON s.kd_prodi = p.kd_prodi WHERE s.nama 
+    LIKE '%$cari%' OR s.nis LIKE '%$cari%'");
 } else {
-    $data = mysqli_query($koneksi, "SELECT s.*, p.nama_prodi FROM siswa s JOIN prodi p ON s.kd_prodi = p.kd_prodi");
+    $data = mysqli_query($koneksi, "SELECT s.*, p.nama_prodi FROM siswa s JOIN prodi p 
+    ON s.kd_prodi = p.kd_prodi");
 }
 ?>
 <!DOCTYPE html>
@@ -30,9 +33,12 @@ if($cari != '') {
             <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
                 <a href="tambah_siswa.php" class="tambah">TAMBAH DATA SISWA</a>
                 <form method="GET" action="siswa.php">
-                    <input type="text" name="cari" placeholder="Cari NIS atau Nama..." value="<?php echo $cari; ?>" style="padding: 5px;">
+                    <input type="text" name="cari" placeholder="Cari NIS atau Nama..." value="
+                    <?php echo $cari; ?>" style="padding: 5px;">
                     <button type="submit" style="padding: 5px;">Cari</button>
-                    <?php if($cari != '') echo '<a href="siswa.php" style="padding: 5px; background: #ccc; text-decoration: none; color: black; border: 1px solid #999;">Reset</a>'; ?>
+                    <?php if($cari != '') echo '<a href="siswa.php" style="padding: 5px; 
+                    background: #ccc; text-decoration: none; 
+                    color: black; border: 1px solid #999;">Reset</a>'; ?>
                 </form>
             </div>
             <table>
@@ -48,7 +54,8 @@ if($cari != '') {
                 </tr>
                 <?php while ($row = mysqli_fetch_assoc($data)) { ?>
                     <tr>
-                        <td><img src="uploads/<?php echo $row['foto']; ?>" width="50" height="50" style="object-fit: cover;"></td>
+                        <td><img src="uploads/<?php echo $row['foto']; ?>
+                        " width="50" height="50" style="object-fit: cover;"></td>
                         <td><?php echo $row['nis']; ?></td>
                         <td><?php echo $row['nama']; ?></td>
                         <td><?php echo $row['kelas']; ?></td>
@@ -57,7 +64,8 @@ if($cari != '') {
                         <td><?php echo ($row['jenis_kelamin'] == 'L') ? 'Laki-laki' : 'Perempuan'; ?></td>
                         <td>
                             <a href="edit_siswa.php?id=<?php echo $row['id']; ?>">EDIT</a>
-                            <a href="hapus_siswa.php?id=<?php echo $row['id']; ?>" onclick="return confirm('Yakin ingin hapus?')">DELETE</a>
+                            <a href="hapus_siswa.php?id=<?php echo $row['id']; ?>" 
+                            onclick="return confirm('Yakin ingin hapus?')">DELETE</a>
                         </td>
                     </tr>
                 <?php } ?>

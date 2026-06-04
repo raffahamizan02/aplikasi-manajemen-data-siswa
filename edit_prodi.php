@@ -14,7 +14,8 @@ if (isset($_POST['update'])) {
     if (mysqli_num_rows($cek) > 0) {
         echo "<p style='color: red; font-weight: bold;'>Kode Prodi sudah digunakan!</p>";
     } else {
-        mysqli_query($koneksi, "UPDATE prodi SET kd_prodi='$kd_prodi', nama_prodi='$nama_prodi' WHERE id_prodi='$id_prodi'");
+        mysqli_query($koneksi, "UPDATE prodi SET kd_prodi='$kd_prodi', nama_prodi='$nama_prodi' 
+        WHERE id_prodi='$id_prodi'");
         echo "<h1>Data berhasil disimpan!</h1>";
         echo "<a href='prodi.php' class='batal'>Kembali</a>";
         exit();

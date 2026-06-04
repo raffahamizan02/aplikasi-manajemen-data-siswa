@@ -17,11 +17,13 @@ if (isset($_POST['simpan'])) {
     $nama_foto = time() . '_' . $foto;
     $path = "uploads/" . $nama_foto;
 
-    if (empty($nis) || empty($nama) || empty($kelas) || empty($tahun_ajaran) || empty($kd_prodi) || empty($jk) || empty($foto)) {
+    if (empty($nis) || empty($nama) || empty($kelas) || empty($tahun_ajaran) || empty($kd_prodi) 
+        || empty($jk) || empty($foto)) {
         $error = "Data wajib diisi!";
     } else {
         if(move_uploaded_file($tmp, $path)){
-            mysqli_query($koneksi, "INSERT INTO siswa (nis, nama, kelas, tahun_ajaran, kd_prodi, jenis_kelamin, foto) VALUES ('$nis', '$nama', '$kelas', '$tahun_ajaran', '$kd_prodi', '$jk', '$nama_foto')");
+            mysqli_query($koneksi, "INSERT INTO siswa (nis, nama, kelas, tahun_ajaran, kd_prodi, jenis_kelamin, foto) 
+            VALUES ('$nis', '$nama', '$kelas', '$tahun_ajaran', '$kd_prodi', '$jk', '$nama_foto')");
             echo "<h1>Data berhasil disimpan!</h1>";
             echo "<a href='siswa.php' class='batal'>Kembali</a>";
             exit();
@@ -84,7 +86,8 @@ if (isset($_POST['simpan'])) {
                     <td></td>
                     <td>
                         <button type="submit" name="simpan" class="submit">SIMPAN</button>
-                        <button type="button" class="cancel"><a href="siswa.php" style="color:white; text-decoration:none;">BATAL</a></button>
+                        <button type="button" class="cancel"><a href="siswa.php" style="color:white; 
+                        text-decoration:none;">BATAL</a></button>
                     </td>
                 </tr>
             </table>
