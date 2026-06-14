@@ -33,8 +33,8 @@ if($cari != '') {
             <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
                 <a href="tambah_siswa.php" class="tambah">TAMBAH DATA SISWA</a>
                 <form method="GET" action="siswa.php">
-                    <input type="text" name="cari" placeholder="Cari NIS atau Nama..." value="
-                    <?php echo $cari; ?>" style="padding: 5px;">
+                    <input type="text" name="cari" placeholder="Cari NIS atau Nama..." value="<?php echo $cari; ?>"
+                    style="padding: 5px;">
                     <button type="submit" style="padding: 5px;">Cari</button>
                     <?php if($cari != '') echo '<a href="siswa.php" style="padding: 5px; 
                     background: #ccc; text-decoration: none; 

@@ -30,9 +30,8 @@ if($cari != '') {
             <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
                 <a href="tambah_prodi.php" class="tambah">TAMBAH DATA PRODI</a>
                 <form method="GET" action="prodi.php">
-                    <input type="text" name="cari" placeholder="Cari Kode atau Nama Prodi..." value="
-                    <?php echo $cari; ?>" 
-                    style="padding: 5px;">
+                    <input type="text" name="cari" placeholder="Cari Kode atau Nama Prodi..."
+                    value="<?php echo $cari; ?>" style="padding: 5px;">
                     <button type="submit" style="padding: 5px;">Cari</button>
                     <?php if($cari != '') echo '<a href="prodi.php" style="padding: 5px; 
                     background: #ccc; text-decoration: none; 
